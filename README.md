@@ -20,8 +20,8 @@ StereoGraph is a framework designed to enhance Large Language Models (LLMs) with
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/StereoGraph.git
-cd StereoGraph
+git clone https://github.com/marcocuccarini/StereoGraphUnveilingStereotypes.git
+cd StereoGraphUnveilingStereotypes
 ```
 
 ### 2. Install dependencies
