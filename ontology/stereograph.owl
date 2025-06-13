@@ -1,0 +1,221 @@
+@prefix : <http://www.semanticweb.org/stereograph#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odang: <https://purl.archive.org/o-dang> .
+@base <http://www.semanticweb.org/stereograph> .
+
+<http://www.semanticweb.org/stereograph> rdf:type owl:Ontology ;
+                                          rdfs:comment """Authors: Lia Draetta, Beatrice Fiumanò, Marco Cuccarini
+Stereograph Ontology"""@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty ;
+              rdfs:subPropertyOf rdfs:label .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasSetting
+dul:hasSetting rdf:type owl:ObjectProperty ;
+               rdfs:range dul:Situation .
+
+
+###  http://www.semanticweb.org/stereograph#hasRole
+:hasRole rdf:type owl:ObjectProperty ;
+         rdfs:domain foaf:Agent ;
+         rdfs:range dul:Role .
+
+
+###  http://www.semanticweb.org/stereograph#hasStereotype
+:hasStereotype rdf:type owl:ObjectProperty ;
+               rdfs:domain dul:Situation ;
+               rdfs:range :Stereotype .
+
+
+###  http://www.semanticweb.org/stereograph#hasTarget
+:hasTarget rdf:type owl:ObjectProperty ;
+           rdfs:domain dul:Situation ;
+           rdfs:range foaf:Agent .
+
+
+###  http://www.semanticweb.org/stereograph#hasType
+:hasType rdf:type owl:ObjectProperty ;
+         rdfs:domain :Stereotype ,
+                     foaf:Agent ;
+         rdfs:range dul:TypeCollection .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain foaf:Group ,
+                          foaf:Person .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/terms#date
+<http://purl.org/dc/terms#date> rdf:type owl:DatatypeProperty ;
+                                rdfs:range xsd:dateTime .
+
+
+###  http://purl.org/dc/terms#identifier
+<http://purl.org/dc/terms#identifier> rdf:type owl:DatatypeProperty ;
+                                      rdfs:range xsd:string .
+
+
+###  http://purl.org/dc/terms#language
+<http://purl.org/dc/terms#language> rdf:type owl:DatatypeProperty ;
+                                    rdfs:range xsd:language .
+
+
+###  http://purl.org/dc/terms#publisher
+<http://purl.org/dc/terms#publisher> rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:string .
+
+
+###  http://purl.org/dc/terms#source
+<http://purl.org/dc/terms#source> rdf:type owl:DatatypeProperty ;
+                                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/stereograph#hasManifestation
+:hasManifestation rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role
+dul:Role rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation
+dul:Situation rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TypeCollection
+dul:TypeCollection rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/stereograph#Stereotype
+:Stereotype rdf:type owl:Class ;
+            rdfs:comment "The explained stereotype or implicit hate present in the text" .
+
+
+###  http://www.semanticweb.org/stereograph#StereotypeClass
+:StereotypeClass rdf:type owl:Class ;
+                 rdfs:subClassOf dul:TypeCollection .
+
+
+###  http://www.semanticweb.org/stereograph#TargetClass
+:TargetClass rdf:type owl:Class ;
+             rdfs:subClassOf dul:TypeCollection ;
+             rdfs:comment "the class \"TargetType\" includes a taxonomy of possibile targets of stereotype or implcit hate such as \"racial hate\", \"gender hate\""@en .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Group
+foaf:Group rdf:type owl:Class ;
+           rdfs:subClassOf foaf:Agent .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class ;
+            rdfs:subClassOf foaf:Agent .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/stereograph#are_aggressors
+:are_aggressors rdf:type owl:NamedIndividual ,
+                         :Stereotype ;
+                :hasType :violence .
+
+
+###  http://www.semanticweb.org/stereograph#are_all_in_gangs
+:are_all_in_gangs rdf:type owl:NamedIndividual ,
+                           :Stereotype ;
+                  :hasType :violence .
+
+
+###  http://www.semanticweb.org/stereograph#are_hypocrites
+:are_hypocrites rdf:type owl:NamedIndividual ,
+                         :Stereotype .
+
+
+###  http://www.semanticweb.org/stereograph#blacks
+:blacks rdf:type owl:NamedIndividual ,
+                 foaf:Group ;
+        skos:altLabel "black people"@en .
+
+
+###  http://www.semanticweb.org/stereograph#mention_text_0
+:mention_text_0 rdf:type owl:NamedIndividual ,
+                         dul:Situation ;
+                :hasStereotype :are_all_in_gangs ;
+                :hasTarget :minorities ;
+                rdfs:label "rt  \" white privilege \" \" is when the gun jams of the gang banger trying to kill you . #fergusonoctober \""@en .
+
+
+###  http://www.semanticweb.org/stereograph#mention_text_20
+:mention_text_20 rdf:type owl:NamedIndividual ,
+                          dul:Situation ;
+                 :hasStereotype :are_aggressors ;
+                 :hasTarget :blacks ;
+                 rdfs:label "in white power by rockwell  chapter called : nightmare  is coming true ! all out black on white war ! prepare now !"@en .
+
+
+###  http://www.semanticweb.org/stereograph#minorities
+:minorities rdf:type owl:NamedIndividual ,
+                     foaf:Person ;
+            skos:altLabel "minority groups"@en .
+
+
+###  http://www.semanticweb.org/stereograph#race
+:race rdf:type owl:NamedIndividual ,
+               :TargetClass ;
+      :hasType :race .
+
+
+###  http://www.semanticweb.org/stereograph#stereo_text_40
+:stereo_text_40 rdf:type owl:NamedIndividual ,
+                         dul:Situation ;
+                :hasStereotype :are_hypocrites ;
+                :hasTarget :blacks ;
+                rdfs:label "oh yeah thats not white geocide at all . not anti white racist at all . imagine saying  \" raising black families is dangerous . \" \" \" \" ali families . \" \" \""@en .
+
+
+###  http://www.semanticweb.org/stereograph#target
+:target rdf:type owl:NamedIndividual ,
+                 dul:Role ;
+        :hasRole :target .
+
+
+###  http://www.semanticweb.org/stereograph#violence
+:violence rdf:type owl:NamedIndividual ,
+                   :StereotypeClass .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

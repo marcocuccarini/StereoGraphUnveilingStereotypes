@@ -1,0 +1,47 @@
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ster: <http://www.semanticweb.org/stereoGraph#>
+PREFIX odang: <https://purl.archive.org/o-dang>
+
+
+#java -jar sparql-anything.jar -q src/query.sparql > kg/output_1.ttl
+CONSTRUCT {
+    #TARGET
+    ?strNormTarget a foaf:Group; #questi vengono costruiti a partire da target NORMALIZZATI (vedi primo BIND)
+        rdfs:label ?normTarget.
+    #STEREOTYPE
+    ?StrOriginalImpliedStatement a ster:Stereotype;
+        rdfs:label ?originalImpliedStatement.
+    #SITUATION
+    ?strTextID a dul:Situation;
+        rdfs:label ?full_text;
+        ster:hasManifestation ?full_text;
+        dul:hasTarget ?strNormTarget;
+        ster:hasStereotype ?StrOriginalImpliedStatement.
+}
+WHERE {
+    SERVICE <x-sparql-anything:csv.headers=true,location=/content/drive/MyDrive/RAG_CLICIT25/Dataset/ITA/graph_set.csv> {
+        [] xyz:tweet ?text_label ;
+            xyz:id ?textID ;
+           xyz:target ?originalTarget ;
+           xyz:annotazioni_parsate ?originalImpliedStatement ;
+           xyz:tweet ?full_text ;
+           xyz:cluster_10_nome_marem ?stereotypeClass .
+    }
+
+    # Generate URIs and cleaned labels for entities
+    BIND(LCASE(STR(?normTarget)) AS ?targetLabel) .
+    BIND(IRI(CONCAT(STR(ster:), ?targetType )) AS ?strTargetType) .
+    BIND(IRI(CONCAT(STR(ster:), ?textID )) AS ?strTextID) .
+    BIND(IRI(CONCAT(STR(ster:), ?originalImpliedStatement )) AS ?StrOriginalImpliedStatement) .
+    BIND(IRI(CONCAT(STR(ster:), ?normTarget )) AS ?strNormTarget) .
+    BIND(LCASE(STR(?originalImpliedStatement)) AS ?cleanedStereotypeLabel)
+}
