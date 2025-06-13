@@ -39,6 +39,8 @@ jupyter notebook
 ```
 Open `main.ipynb` in your browser.
 
+###5. Import the dataset from the following GitHub page: [Open-Stereotype-corpus] (https://github.com/SodaMaremLo/Open-Stereotype-corpus)
+
 ---
 
 ## 📂 Repository Structure
