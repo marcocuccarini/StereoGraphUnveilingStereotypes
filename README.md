@@ -32,14 +32,17 @@ pip install -r requirements.txt
 ### 3. Install Ollama
 Follow the official installation instructions from [ollama.ai](https://ollama.ai).
 
-### 4. (Optional) Run Jupyter Notebook
-To use the notebook interface:
-```bash
-jupyter notebook
-```
-Open `main.ipynb` in your browser.
 
-### 5. Import the dataset from the following GitHub page: [Open-Stereotype-corpus](https://github.com/SodaMaremLo/Open-Stereotype-corpus)
+### 4. Import the dataset 
+From the following GitHub page: [Open-Stereotype-corpus](https://github.com/SodaMaremLo/Open-Stereotype-corpus) and import into the test_graph_creation, with the name "stereo_test.csv".
+Rember to split the dataset using the samples (ids) present in the dataset test_set.csv". 
+
+### 5. Run the code main.py
+It save the results om script, result_evalaution results
+
+### 6. Run the evalaute_perfroamnce.py update the json fil, adding the avarege results in the fon of thejson file
+
+
 
 ---
 
@@ -48,23 +51,29 @@ Open `main.ipynb` in your browser.
 ```
 StereoGraph/
 │
-├── data/
-│   ├── error analysis/           # IDs and human annotations for error analysis
-│   └── test e graph creation/    # IDs used for graph creation and test set
+├── data/                              # Dataset folders
+│   ├── error analysis/                # IDs and human annotations for error analysis
+│   └── test e graph creation/         # Dataset and IDs used for graph creation and testing
 │
-├── human_evaluation/            # Human evaluation results (error and similarity analyses)
+├── human_evaluation/                  # Human evaluation results (error and similarity analyses)
 │
-├── kg/                          # Populated ontology from the dataset
+├── kg/                                # Populated knowledge graph (ontology instances)
 │
-├── ontology/                    # Ontology structure used in experiments
+├── ontology/                          # Ontology schema used in experiments
 │
-├── scripts/                     # Scripts to run full pipeline and evaluations
+├── scripts/                           # Scripts for pipeline execution and evaluation
+│   ├── pipeline_implementation/       # Core pipeline components
+│   │   ├── main.py                    # Script to run and test the model
+│   │   └── prompt.py                  # List of possible prompts for evaluation
+│   │
+│   ├── results_evaluation/           # Evaluation outputs and utilities
+│   │   └── evaluate_performance.py    # Extracts average similarity from result files
 │
-├── src/                         # SPARQL queries used throughout the project
+├── src/                               # SPARQL queries and related utilities
 │
-├── main.py                      # Main file to run the full pipeline via CLI
-├── main.ipynb                   # Notebook version for interactive use
-└── prompts.py                   # Prompt templates used in the evaluation
+├── main.py                            # CLI entry point for the full pipeline
+└── prompts.py                         # Prompt templates used in the evaluation
+
 ```
 
 ---
