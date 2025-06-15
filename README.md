@@ -66,8 +66,9 @@ StereoGraph/
 │   │   ├── main.py                    # Script to run and test the model
 │   │   └── prompt.py                  # List of possible prompts for evaluation
 │   │
-│   ├── results_evaluation/           # Evaluation outputs and utilities
-│   │   └── evaluate_performance.py    # Extracts average similarity from result files
+│   ├── results_evaluation/            # Evaluation outputs and performance analysis
+│   │   ├── evaluate_performance.py    # Extracts average similarity from result files
+│   │   └── results/                   # Directory containing JSON and score output files
 │
 ├── src/                               # SPARQL queries and related utilities
 │
