@@ -81,7 +81,8 @@ StereoGraph/
 Run the experiment using either of the following:
 
 ### 1. Run the code `main.py`
-This will execute the full pipeline and save the results in the `scripts/results_evaluation/results/` directory.
+This will execute the full pipeline and save the results in the scripts/results_evaluation/results/ directory.
+Please check if any preprocessing is necessary. For example, if the LLM adds additional text such as “What can I do for you?” to its predictions, you should remove or clean this extra text before running the evaluation to ensure accurate results.
 
 ### 2. Run `evaluate_performance.py`
 This script processes the results and updates the JSON files by appending the **average similarity scores** at the end of each file.
