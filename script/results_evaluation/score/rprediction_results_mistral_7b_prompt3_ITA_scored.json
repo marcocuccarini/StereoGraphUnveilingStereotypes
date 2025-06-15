@@ -1,0 +1,36 @@
+{
+  "evaluations": [
+    {
+      "post": "L'immigrato che non piace alla sinistra razzista.Tanto di cappello a questo migrante,questi sono i migranti che voglio.Gli italiani non sono razzisti,anzi, sono fin troppo accoglienti.Non ne possono + di mantenere migranti che non lavorano ma delinquono.😐 https://t.co/dUH7RPydhO",
+      "implied_statement": "i migranti non vogliono lavorare",
+      "baseline_response": "Gli immigrati che non lavorano sono criminali",
+      "kg_response": "Gli immigrati criminali non possono essere mantenuti in Italia",
+      "bleu_similarity_baseline": 0.03235934848975789,
+      "bert_similarity_baseline": 0.655798077583313,
+      "rouge_similarity_baseline": 0.16666666666666666,
+      "bleu_similarity_kg": 0.02573285025273419,
+      "bert_similarity_kg": 0.549321174621582,
+      "rouge_similarity_kg": 0.14285714285714285
+    },
+    {
+      "post": "L'immigrato che non piace alla sinistra razzista.Tanto di cappello a questo migrante,questi sono i migranti che voglio.Gli italiani non sono razzisti,anzi, sono fin troppo accoglienti.Non ne possono + di mantenere migranti che non lavorano ma delinquono.😐 https://t.co/dUH7RPydhO",
+      "implied_statement": " i migranti sono criminali ",
+      "baseline_response": "Gli immigrati criminali sono troppi",
+      "kg_response": "Gli immigrati criminali dovranno essere espulsi",
+      "bleu_similarity_baseline": 0.05428693985879238,
+      "bert_similarity_baseline": 0.8376068472862244,
+      "rouge_similarity_baseline": 0.22222222222222224,
+      "bleu_similarity_kg": 0.03759340464156993,
+      "bert_similarity_kg": 0.7151166200637817,
+      "rouge_similarity_kg": 0.2
+    }
+  ],
+  "averages": {
+    "average_bleu_baseline": 0.04332314417427513,
+    "average_bert_baseline": 0.7467024624347687,
+    "average_rouge_baseline": 0.19444444444444445,
+    "average_bleu_kg": 0.031663127447152065,
+    "average_bert_kg": 0.6322188973426819,
+    "average_rouge_kg": 0.17142857142857143
+  }
+}

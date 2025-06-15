@@ -6,7 +6,83 @@ from rdflib import Graph, Namespace
 import urllib.parse
 
 
+def extract_by_target(target_name, rdf_file='kg/output.ttl'):
 
+    # Load the graph
+    g = Graph()
+    g.parse(rdf_file, format='turtle')
+    
+    # Define namespaces
+    DUL = Namespace('http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#')
+    STER = Namespace('http://www.semanticweb.org/stereoGraph#')
+    
+    # Sanitize target_name to ensure it's URI-safe
+    safe_target = urllib.parse.quote(str(target_name))
+    target_uri = STER[safe_target]
+
+    #if(target_name in [])
+
+    print(target_name)
+    # Debug print
+    print(f"Querying for target: {target_uri}")
+    
+    query = f"""
+    PREFIX dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>
+    PREFIX ster: <http://www.semanticweb.org/stereoGraph#>
+
+    SELECT ?s ?stereotype
+    WHERE {{
+      ?s a dul:Situation ;
+         dul:hasTarget <{target_uri}> ;
+         ster:hasStereotype ?stereotype .
+    }}
+    """
+
+    # Execute the query
+    results = g.query(query)
+
+    # Collect and return results
+    extracted = []
+    for row in results:
+        extracted.append({
+            "target": str(target_uri).split("#")[1],
+            "stereotype": str(row.stereotype).split("#")[1],
+        })
+    return extracted
+
+   
+
+
+
+def retrieve_context_from_graph(text_dataset, post_text, i, sample_size, LENGUAGE):
+
+    #parametro numero medio 
+
+    escaped_text = re.escape(post_text)
+
+    if LENGUAGE=="ITA":
+
+        kg_name="../kg/output_ITA.ttl"
+
+    if LENGUAGE=="ENG":
+
+        kg_name="../kg/output_ENG.ttl"
+
+
+
+
+
+    kg_data = extract_by_target(text_dataset['target'][i], kg_name)
+    context_pieces=[]
+    
+    if sample_size<len(kg_data):
+        kg_data = random.sample(kg_data, sample_size)
+    for text in kg_data:
+
+        
+        context_pieces.append(str(text['target'])+" has stereotype "+str(text['stereotype']))
+
+    return " ; ".join(context_pieces) if context_pieces else "Nessun contesto rilevante trovato nel grafo."
 def sentence_similarity_via_prompt(chat, sentence1, sentence2):
     """
     Uses the LLaMA model via prompt to estimate similarity between two sentences.
