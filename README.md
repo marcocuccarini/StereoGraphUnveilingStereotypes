@@ -37,10 +37,7 @@ Follow the official installation instructions from [ollama.ai](https://ollama.ai
 From the following GitHub page: [Open-Stereotype-corpus](https://github.com/SodaMaremLo/Open-Stereotype-corpus) and import into the test_graph_creation, with the name "stereo_test.csv".
 Rember to split the dataset using the samples (ids) present in the dataset test_set.csv". 
 
-### 5. Run the code main.py
-It save the results om script, result_evalaution results
 
-### 6. Run the evalaute_perfroamnce.py update the json fil, adding the avarege results in the fon of thejson file
 
 
 
@@ -83,17 +80,14 @@ StereoGraph/
 
 Run the experiment using either of the following:
 
-### Option 1: Python script
-```bash
-python main.py
-```
+### 1. Run the code `main.py`
+This will execute the full pipeline and save the results in the `scripts/results_evaluation/results/` directory.
 
-### Option 2: Jupyter Notebook
-Open `main.ipynb` and run all cells.
-
-The system runs experiments using three LLMs: **Gemma**, **LLaMA**, and **Mistral**. It processes a triple-stereotype dataset and can be extended to any model available via **Ollama**.
+### 2. Run `evaluate_performance.py`
+This script processes the results and updates the JSON files by appending the **average similarity scores** at the end of each file.
 
 ---
+
 
 ## 📚 Data
 
